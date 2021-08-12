@@ -49,6 +49,13 @@ class AppStoreSpider(scrapy.spiders.SitemapSpider):
         url = response.request.url
         title = response.css('.ui-app-store-hero__header__app-name ::text').extract_first()
         developer = response.css('.ui-app-store-hero__header__subscript a::text').extract_first()
+        email_result = response.css('.app-support-list__item span::text').extract()
+        for e in email_result:
+        	if '@' in e:
+        		email = e
+        		break
+        print("THIS IS THE EMAIL")
+        print(email)
         developer_link = response.css('.ui-app-store-hero__header__subscript a::attr(href)').extract_first()
         icon = response.css('.ui-app-store-hero__app-icon img::attr(src)').extract_first()
         rating = response.css('.ui-star-rating__rating::text').extract_first()
@@ -83,6 +90,7 @@ class AppStoreSpider(scrapy.spiders.SitemapSpider):
             id=app_id,
             url=url,
             title=title,
+            email=email,
             developer=developer,
             developer_link=developer_link,
             icon=icon,

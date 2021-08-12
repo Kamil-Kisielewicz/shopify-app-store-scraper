@@ -19,6 +19,7 @@ class App(scrapy.Item):
     url = scrapy.Field()
     title = scrapy.Field()
     developer = scrapy.Field()
+    email = scrapy.Field()
     developer_link = scrapy.Field()
     icon = scrapy.Field()
     rating = scrapy.Field()
